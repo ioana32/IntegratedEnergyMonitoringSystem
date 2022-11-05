@@ -2,21 +2,18 @@ package ro.tuc.ds2020.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import ro.tuc.ds2020.dtos.DeviceDTO;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.UUID;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Device {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Type(type = "uuid-binary")
-    private UUID id;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -27,21 +24,28 @@ public class Device {
     @Column(name = "maxEnergy", nullable = false)
     private int maxEnergy;
 
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
+
+    @OneToMany(mappedBy="consumption")
+    private List<Consumption> consumptions;
 
     public Device() {
     }
 
-    public Device(String description, String address, int maxEnergy) {
-        this.description = description;
-        this.address = address;
-        this.maxEnergy = maxEnergy;
+    public Device(DeviceDTO deviceDTO){
+        this.description = deviceDTO.getDescription();
+        this.maxEnergy = deviceDTO.getMaxEnergy();
+        this.address = deviceDTO.getAddress();
+        this.user = deviceDTO.getUser();
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -67,5 +71,21 @@ public class Device {
 
     public void setMaxEnergy(int maxEnergy) {
         this.maxEnergy = maxEnergy;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Consumption> getConsumptions() {
+        return consumptions;
+    }
+
+    public void setConsumptions(List<Consumption> consumptions) {
+        this.consumptions = consumptions;
     }
 }
