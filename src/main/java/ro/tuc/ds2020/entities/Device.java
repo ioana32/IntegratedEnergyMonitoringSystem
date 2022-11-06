@@ -1,5 +1,6 @@
 package ro.tuc.ds2020.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import ro.tuc.ds2020.dtos.DeviceDTO;
@@ -24,11 +25,13 @@ public class Device {
     @Column(name = "maxEnergy", nullable = false)
     private int maxEnergy;
 
-    @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
-    private User user;
 
-    @OneToMany(mappedBy="consumption")
+    @ManyToOne
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "user_id"))
+    @JsonBackReference
+    private Users user;
+
+    @OneToMany(mappedBy="device", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Consumption> consumptions;
 
     public Device() {
@@ -73,11 +76,11 @@ public class Device {
         this.maxEnergy = maxEnergy;
     }
 
-    public User getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 

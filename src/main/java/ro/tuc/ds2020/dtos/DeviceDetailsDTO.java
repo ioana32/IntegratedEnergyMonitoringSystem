@@ -1,7 +1,7 @@
 package ro.tuc.ds2020.dtos;
 
 import ro.tuc.ds2020.entities.Device;
-import ro.tuc.ds2020.entities.User;
+import ro.tuc.ds2020.entities.Users;
 
 public class DeviceDetailsDTO {
 
@@ -10,7 +10,7 @@ public class DeviceDetailsDTO {
 
     private String address;
     private int maxEnergy;
-    private User user;
+    private Users user;
 
     public DeviceDetailsDTO(Device device) {
         this.id = device.getId();
@@ -52,11 +52,11 @@ public class DeviceDetailsDTO {
         this.maxEnergy = maxEnergy;
     }
 
-    public User getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 }

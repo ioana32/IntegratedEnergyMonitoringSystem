@@ -21,41 +21,38 @@ public class ConsumptionService {
     }
 
     public ConsumptionDTO createConsumption(ConsumptionDTO consumptionDTO){
-//        Consumption consumption = new Consumption(consumptionDTO);
-//        return new ConsumptionDTO(consumptionRepository.save(consumption));
-        return null;
+        Consumption consumption = new Consumption(consumptionDTO);
+        return new ConsumptionDTO(consumptionRepository.save(consumption));
+
     }
 
     public ConsumptionDTO deleteConsumption(Long consumptionId) throws NotFoundException {
-//        Consumption consumption= consumptionRepository.findById(consumptionId).orElse(null);
-//        if (consumption == null) {
-//            //throw new ResourceNotFoundExeption(String.format("Client with id %d not found ", clientId));
-//        }
-//        consumptionRepository.delete(consumption);
-//        return new ConsumptionDTO(consumption);
-        return null;
+        Consumption consumption= consumptionRepository.findById(consumptionId).orElse(null);
+        if (consumption == null) {
+            //throw new ResourceNotFoundExeption(String.format("Client with id %d not found ", clientId));
+        }
+        consumptionRepository.delete(consumption);
+        return new ConsumptionDTO(consumption);
     }
 
     public ConsumptionDTO updateConsumption(Long consumptionId, ConsumptionDTO consumptionDTO){
-//        Consumption consumption=consumptionRepository.findById(consumptionId).orElse(null);
-//        if(consumption == null){
-//            //throw new ResourceNotFoundExeption(String.format("Client with id %d not found ", clientId));
-//        } else {
-//            consumption.setAddress(ConsumptionDTO.getAddress());
-//            consumption.setMaxEnergy(ConsumptionDTO.getMaxEnergy());
-//            consumption.setDescription(ConsumptionDTO.getDescription());
-//        }
-//        return new ConsumptionDTO(consumptionRepository.save(consumption));
-        return null;
+        Consumption consumption=consumptionRepository.findById(consumptionId).orElse(null);
+        if(consumption == null){
+            //throw new ResourceNotFoundExeption(String.format("Client with id %d not found ", clientId));
+        } else {
+            consumption.setEnergyConsumption(consumptionDTO.getEnergyConsumption());
+            consumption.setTimestamp(consumptionDTO.getTimestamp());
+        }
+        return new ConsumptionDTO(consumptionRepository.save(consumption));
+
     }
 
     public ConsumptionDetailsDTO getConsumption(Long consumptionId){
-//        Consumption consumption = consumptionRepository.findById(consumptionId).orElse(null);
-//        if(consumption == null) {
-//            //  throw new ResourceNotFoundExeption(String.format("Client with id %d not found ", clientId));
-//        }
-//        return new ConsumptionDetailsDTO(consumption);
-        return null;
+        Consumption consumption = consumptionRepository.findById(consumptionId).orElse(null);
+        if(consumption == null) {
+            //  throw new ResourceNotFoundExeption(String.format("Client with id %d not found ", clientId));
+        }
+        return new ConsumptionDetailsDTO(consumption);
 
     }
 

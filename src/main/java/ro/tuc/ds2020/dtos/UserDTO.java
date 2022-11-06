@@ -1,6 +1,6 @@
 package ro.tuc.ds2020.dtos;
 
-import ro.tuc.ds2020.entities.User;
+import ro.tuc.ds2020.entities.Users;
 
 public class UserDTO {
 
@@ -8,7 +8,7 @@ public class UserDTO {
     private String password;
     private boolean role;
 
-    public UserDTO(User user){
+    public UserDTO(Users user){
         this.name= user.getName();
         this.password= user.getPassword();
         this.role=user.isRole();

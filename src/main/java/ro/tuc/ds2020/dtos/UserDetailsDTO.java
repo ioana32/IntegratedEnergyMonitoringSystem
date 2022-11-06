@@ -1,7 +1,8 @@
 package ro.tuc.ds2020.dtos;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import ro.tuc.ds2020.entities.Device;
-import ro.tuc.ds2020.entities.User;
+import ro.tuc.ds2020.entities.Users;
 
 import java.util.List;
 
@@ -11,9 +12,13 @@ public class UserDetailsDTO {
     private String name;
     private String password;
     private boolean role;
+    @JsonManagedReference
     private List<Device> devices;
 
-    public UserDetailsDTO(User user) {
+
+
+    public UserDetailsDTO(Users user) {
+        this.id= user.getId();
         this.name = user.getName();
         this.password = user.getPassword();
         this.role = user.isRole();

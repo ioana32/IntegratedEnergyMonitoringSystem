@@ -22,27 +22,28 @@ public class DeviceController {
     public DeviceController(DeviceService deviceService) { this.deviceService = deviceService;}
     
     @GetMapping()
-    public ResponseEntity<List<DeviceDTO>> getClients(){
+    public ResponseEntity<List<DeviceDTO>> getDevices(){
         return null;
     }
 
     @GetMapping(value = "/{deviceId}")
-    public ResponseEntity<DeviceDetailsDTO> getClients(@PathVariable Long deviceId){
-        return new ResponseEntity<>(deviceService.getDevice(deviceId), HttpStatus.OK);
+    public ResponseEntity<DeviceDetailsDTO> getDevice(@PathVariable("deviceId") Long deviceId){
+        DeviceDetailsDTO dto = deviceService.getDevice(deviceId);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity<DeviceDTO> createClient(@RequestBody DeviceDTO deviceDTO){
+    public ResponseEntity<DeviceDTO> createDevice(@RequestBody DeviceDTO deviceDTO){
         return new ResponseEntity<>(deviceService.createDevice(deviceDTO),HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{deviceId}")
-    public ResponseEntity<DeviceDTO> updateClient(@PathVariable Long deviceId, @RequestBody DeviceDTO deviceDTO){
+    public ResponseEntity<DeviceDTO> updateDevice(@PathVariable("deviceId") Long deviceId, @RequestBody DeviceDTO deviceDTO){
         return new ResponseEntity<>(deviceService.updateDevice(deviceId,deviceDTO),HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{deviceId}")
-    public ResponseEntity<DeviceDTO> deleteClient(@PathVariable Long deviceId) throws NotFoundException {
+    public ResponseEntity<DeviceDTO> deleteDevice(@PathVariable("deviceId") Long deviceId) throws NotFoundException {
         return new ResponseEntity<>(deviceService.deleteDevice(deviceId),HttpStatus.OK);
     }
     

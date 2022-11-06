@@ -1,8 +1,12 @@
 package ro.tuc.ds2020.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Type;
+import ro.tuc.ds2020.dtos.ConsumptionDTO;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,17 +25,24 @@ public class Consumption {
     private float energyConsumption;
 
     @ManyToOne
-    @JoinColumn(name="device_id", nullable=false)
-    private Device consumption;
+    @JoinColumn(name = "device_id", foreignKey = @ForeignKey(name = "device_id"))
+    @JsonBackReference
+    private Device device;
 
     public Consumption(){
 
     }
 
-    public Consumption(LocalDateTime timestamp, float energyConsumption, Device consumption) {
+    public Consumption(LocalDateTime timestamp, float energyConsumption, Device device) {
         this.timestamp = timestamp;
         this.energyConsumption = energyConsumption;
-        this.consumption = consumption;
+        this.device = device;
+    }
+
+    public Consumption(ConsumptionDTO consumptionDTO){
+        this.energyConsumption=consumptionDTO.getEnergyConsumption();
+        this.timestamp=consumptionDTO.getTimestamp();
+        this.device=consumptionDTO.getDevice();
     }
 
     public Long getId() {
@@ -58,11 +69,11 @@ public class Consumption {
         this.energyConsumption = energyConsumption;
     }
 
-    public Device getConsumption() {
-        return consumption;
+    public Device getDevice() {
+        return device;
     }
 
-    public void setConsumption(Device consumption) {
-        this.consumption = consumption;
+    public void setDevice(Device device) {
+        this.device = device;
     }
 }

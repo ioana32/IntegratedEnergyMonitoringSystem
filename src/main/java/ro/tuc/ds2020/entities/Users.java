@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -22,20 +22,20 @@ public class User {
     @Column(name = "role", nullable = false)
     private boolean role;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Device> devices;
 
-    public User() {
+    public Users() {
     }
 
-    public User(boolean role, String name, String password, List<Device> devices) {
+    public Users(boolean role, String name, String password, List<Device> devices) {
         this.role = role;
         this.name = name;
         this.password = password;
         this.devices = devices;
     }
 
-    public User(UserDTO userDTO){
+    public Users(UserDTO userDTO){
         this.role=userDTO.isRole();
         this.name=userDTO.getName();
         this.password=userDTO.getPassword();

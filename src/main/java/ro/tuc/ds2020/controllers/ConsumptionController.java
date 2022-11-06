@@ -7,8 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.tuc.ds2020.dtos.ConsumptionDTO;
 import ro.tuc.ds2020.dtos.ConsumptionDetailsDTO;
-import ro.tuc.ds2020.dtos.DeviceDTO;
-import ro.tuc.ds2020.dtos.DeviceDetailsDTO;
 import ro.tuc.ds2020.services.ConsumptionService;
 
 import java.util.List;
@@ -26,12 +24,12 @@ public class ConsumptionController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<DeviceDTO>> getConsumptions(){
+    public ResponseEntity<List<ConsumptionDTO>> getConsumptions(){
         return null;
     }
 
     @GetMapping(value = "/{consumptionId}")
-    public ResponseEntity<ConsumptionDetailsDTO> getConsumption(@PathVariable Long consumptionId){
+    public ResponseEntity<ConsumptionDetailsDTO> getConsumption(@PathVariable("consumptionId") Long consumptionId){
         return new ResponseEntity<>(consumptionService.getConsumption(consumptionId), HttpStatus.OK);
     }
 
