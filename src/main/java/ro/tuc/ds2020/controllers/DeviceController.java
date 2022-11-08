@@ -39,7 +39,7 @@ public class DeviceController {
     }
 
     @PostMapping()
-    public ResponseEntity<DeviceDTO> createDevice(@RequestBody DeviceDTO deviceDTO){
+    public ResponseEntity<DeviceDetailsDTO> createDevice(@RequestBody DeviceDTO deviceDTO){
         return new ResponseEntity<>(deviceService.createDevice(deviceDTO),HttpStatus.CREATED);
     }
 

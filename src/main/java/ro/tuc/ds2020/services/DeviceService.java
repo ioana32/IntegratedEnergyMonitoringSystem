@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import ro.tuc.ds2020.dtos.DeviceDTO;
 import ro.tuc.ds2020.dtos.DeviceDetailsDTO;
 import ro.tuc.ds2020.entities.Device;
+import ro.tuc.ds2020.entities.Users;
 import ro.tuc.ds2020.repositories.DeviceRepository;
+import ro.tuc.ds2020.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +21,17 @@ public class DeviceService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     private final DeviceRepository deviceRepository;
+    private final UserService userService;
 
     @Autowired
-    public DeviceService(DeviceRepository deviceRepository) {
+    public DeviceService(DeviceRepository deviceRepository, UserRepository userRepository, UserService userService) {
         this.deviceRepository = deviceRepository;
+        this.userService = userService;
     }
 
-    public DeviceDTO createDevice(DeviceDTO deviceDTO){
+    public DeviceDetailsDTO createDevice(DeviceDTO deviceDTO){
         Device device = new Device(deviceDTO);
-        return new DeviceDTO(deviceRepository.save(device));
+        return new DeviceDetailsDTO(deviceRepository.save(device));
     }
 
     public DeviceDTO deleteDevice(Long deviceId) throws NotFoundException {
