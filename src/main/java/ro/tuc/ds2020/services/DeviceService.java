@@ -1,6 +1,8 @@
 package ro.tuc.ds2020.services;
 
 import javassist.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.tuc.ds2020.dtos.DeviceDTO;
@@ -13,6 +15,8 @@ import java.util.List;
 
 @Service
 public class DeviceService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     private final DeviceRepository deviceRepository;
 
@@ -28,10 +32,12 @@ public class DeviceService {
 
     public DeviceDTO deleteDevice(Long deviceId) throws NotFoundException {
         Device device= deviceRepository.findById(deviceId).orElse(null);
+        System.out.println(device);
         if (device == null) {
             //throw new ResourceNotFoundExeption(String.format("Client with id %d not found ", clientId));
         }
-        deviceRepository.delete(device);
+        Integer i =deviceRepository.deleteDeviceById(device.getId());
+       // return device.getId();
         return new DeviceDTO(device);
     }
 
@@ -56,11 +62,11 @@ public class DeviceService {
 
     }
 
-    public List<DeviceDTO> getDevices(){
+    public List<DeviceDetailsDTO> getDevices(){
         List<Device> devices=deviceRepository.findAll();
-        List<DeviceDTO> devDTO=new ArrayList<>();
+        List<DeviceDetailsDTO> devDTO=new ArrayList<>();
         for(Device dev:devices){
-            devDTO.add(new DeviceDTO(dev));
+            devDTO.add(new DeviceDetailsDTO(dev));
         }
         return devDTO;
     }

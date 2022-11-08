@@ -91,4 +91,16 @@ public class Device {
     public void setConsumptions(List<Consumption> consumptions) {
         this.consumptions = consumptions;
     }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", address='" + address + '\'' +
+                ", maxEnergy=" + maxEnergy +
+                ", user=" + user +
+                ", consumptions=" + consumptions +
+                '}';
+    }
 }

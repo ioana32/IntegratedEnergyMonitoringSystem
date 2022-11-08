@@ -22,7 +22,7 @@ public class DeviceController {
     public DeviceController(DeviceService deviceService) { this.deviceService = deviceService;}
     
     @GetMapping()
-    public ResponseEntity<List<DeviceDTO>> getDevices(){
+    public ResponseEntity<List<DeviceDetailsDTO>> getDevices(){
         return new ResponseEntity<>(deviceService.getDevices(),HttpStatus.OK);
     }
 
