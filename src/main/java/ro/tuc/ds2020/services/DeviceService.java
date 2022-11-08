@@ -41,7 +41,7 @@ public class DeviceService {
         return new DeviceDTO(device);
     }
 
-    public DeviceDTO updateDevice(Long deviceId, DeviceDTO deviceDTO){
+    public DeviceDetailsDTO updateDevice(Long deviceId, DeviceDTO deviceDTO){
         Device device=deviceRepository.findById(deviceId).orElse(null);
         if(device == null){
             //throw new ResourceNotFoundExeption(String.format("Client with id %d not found ", clientId));
@@ -50,7 +50,7 @@ public class DeviceService {
             device.setMaxEnergy(deviceDTO.getMaxEnergy());
             device.setDescription(deviceDTO.getDescription());
         }
-        return new DeviceDTO(deviceRepository.save(device));
+        return new DeviceDetailsDTO(deviceRepository.save(device));
     }
 
     public DeviceDetailsDTO getDevice(Long deviceId){

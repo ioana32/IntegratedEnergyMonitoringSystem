@@ -39,9 +39,9 @@ public class UserController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO){
+    public ResponseEntity<UserDetailsDTO> createUser(@RequestBody UserDTO userDTO){
         //return new ResponseEntity<>(userService.createUser(userDTO),HttpStatus.CREATED);
-        UserDTO dto = userService.createUser(userDTO);
+        UserDetailsDTO dto = userService.createUser(userDTO);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 

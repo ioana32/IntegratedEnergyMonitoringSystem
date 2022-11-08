@@ -35,10 +35,10 @@ public class UserService {
         return userRepository.findByName(username);
     }
 
-    public UserDTO createUser(UserDTO userDTO){
+    public UserDetailsDTO createUser(UserDTO userDTO){
         Users user = new Users(userDTO);
         user.setRole(false);
-        return new UserDTO(userRepository.save(user));
+        return new UserDetailsDTO(userRepository.save(user));
     }
 
     public UserDTO deleteUser(Long userId) throws NotFoundException {

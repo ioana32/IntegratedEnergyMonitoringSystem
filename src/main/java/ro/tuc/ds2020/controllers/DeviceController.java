@@ -43,8 +43,8 @@ public class DeviceController {
         return new ResponseEntity<>(deviceService.createDevice(deviceDTO),HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/{deviceId}")
-    public ResponseEntity<DeviceDTO> updateDevice(@PathVariable("deviceId") Long deviceId, @RequestBody DeviceDTO deviceDTO){
+    @PatchMapping(value = "/{deviceId}")
+    public ResponseEntity<DeviceDetailsDTO> updateDevice(@PathVariable("deviceId") Long deviceId, @RequestBody DeviceDTO deviceDTO){
         return new ResponseEntity<>(deviceService.updateDevice(deviceId,deviceDTO),HttpStatus.OK);
     }
 
