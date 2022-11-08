@@ -1,8 +1,10 @@
 package ro.tuc.ds2020.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.springframework.lang.Nullable;
 import ro.tuc.ds2020.dtos.DeviceDTO;
 
 import javax.persistence.*;

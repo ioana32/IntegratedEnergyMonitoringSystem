@@ -14,6 +14,7 @@ import ro.tuc.ds2020.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DeviceService {
@@ -22,15 +23,21 @@ public class DeviceService {
 
     private final DeviceRepository deviceRepository;
     private final UserService userService;
+    private final UserRepository userRepository;
 
     @Autowired
-    public DeviceService(DeviceRepository deviceRepository, UserRepository userRepository, UserService userService) {
+    public DeviceService(DeviceRepository deviceRepository, UserRepository userRepository, UserService userService, UserRepository userRepository1) {
         this.deviceRepository = deviceRepository;
         this.userService = userService;
+        this.userRepository = userRepository1;
     }
 
     public DeviceDetailsDTO createDevice(DeviceDTO deviceDTO){
+        System.out.println(deviceDTO);
+        Optional<Users> user=userRepository.findById(Long.valueOf(0));
+
         Device device = new Device(deviceDTO);
+        device.setUser(user.get());
         return new DeviceDetailsDTO(deviceRepository.save(device));
     }
 

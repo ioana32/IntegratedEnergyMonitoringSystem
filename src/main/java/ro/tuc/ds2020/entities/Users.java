@@ -80,4 +80,15 @@ public class Users {
     public void setDevices(List<Device> devices) {
         this.devices = devices;
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", devices=" + devices +
+                '}';
+    }
 }

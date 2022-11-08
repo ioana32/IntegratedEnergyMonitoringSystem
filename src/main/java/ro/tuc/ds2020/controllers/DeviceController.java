@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.tuc.ds2020.dtos.DeviceDTO;
 import ro.tuc.ds2020.dtos.DeviceDetailsDTO;
+import ro.tuc.ds2020.dtos.UserDetailsDTO;
 import ro.tuc.ds2020.services.DeviceService;
 
 import java.util.List;
@@ -40,7 +41,9 @@ public class DeviceController {
 
     @PostMapping()
     public ResponseEntity<DeviceDetailsDTO> createDevice(@RequestBody DeviceDTO deviceDTO){
-        return new ResponseEntity<>(deviceService.createDevice(deviceDTO),HttpStatus.CREATED);
+        DeviceDetailsDTO dto = deviceService.createDevice(deviceDTO);
+        return new ResponseEntity<>(dto, HttpStatus.CREATED);
+       // return new ResponseEntity<>(deviceService.createDevice(deviceDTO),HttpStatus.CREATED);
     }
 
     @PatchMapping(value = "/{deviceId}")

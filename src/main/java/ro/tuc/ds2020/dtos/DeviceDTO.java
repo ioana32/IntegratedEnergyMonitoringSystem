@@ -50,4 +50,14 @@ public class DeviceDTO {
     public void setUser(Users user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "DeviceDTO{" +
+                "description='" + description + '\'' +
+                ", address='" + address + '\'' +
+                ", maxEnergy=" + maxEnergy +
+                ", user=" + user +
+                '}';
+    }
 }

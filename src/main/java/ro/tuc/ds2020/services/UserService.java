@@ -78,7 +78,8 @@ public class UserService {
         List<Users> clients=userRepository.findAllByRoleIsFalse();
         List<UserDetailsDTO> clientsN = new ArrayList<>();
         for(Users user:clients){
-            clientsN.add(new UserDetailsDTO(user));
+            if(user.getId()!=0)
+                clientsN.add(new UserDetailsDTO(user));
         }
         return clientsN;
     }
