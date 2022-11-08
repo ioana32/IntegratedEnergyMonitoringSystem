@@ -23,12 +23,18 @@ public class DeviceController {
     
     @GetMapping()
     public ResponseEntity<List<DeviceDTO>> getDevices(){
-        return null;
+        return new ResponseEntity<>(deviceService.getDevices(),HttpStatus.OK);
     }
 
     @GetMapping(value = "/{deviceId}")
     public ResponseEntity<DeviceDetailsDTO> getDevice(@PathVariable("deviceId") Long deviceId){
         DeviceDetailsDTO dto = deviceService.getDevice(deviceId);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/user/{userId}")
+    public ResponseEntity<List<DeviceDTO>> getDevicebyUser(@PathVariable("userId") Long userId){
+        List<DeviceDTO> dto = deviceService.getDevicesbyUser(userId);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

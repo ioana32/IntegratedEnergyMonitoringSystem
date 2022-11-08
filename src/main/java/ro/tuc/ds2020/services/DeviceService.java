@@ -8,6 +8,9 @@ import ro.tuc.ds2020.dtos.DeviceDetailsDTO;
 import ro.tuc.ds2020.entities.Device;
 import ro.tuc.ds2020.repositories.DeviceRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class DeviceService {
 
@@ -51,6 +54,24 @@ public class DeviceService {
         }
         return new DeviceDetailsDTO(device);
 
+    }
+
+    public List<DeviceDTO> getDevices(){
+        List<Device> devices=deviceRepository.findAll();
+        List<DeviceDTO> devDTO=new ArrayList<>();
+        for(Device dev:devices){
+            devDTO.add(new DeviceDTO(dev));
+        }
+        return devDTO;
+    }
+
+    public List<DeviceDTO> getDevicesbyUser(Long userId){
+        List<Device> devices=deviceRepository.findAllByUser(userId);
+        List<DeviceDTO> devDTO=new ArrayList<>();
+        for(Device dev:devices){
+            devDTO.add(new DeviceDTO(dev));
+        }
+        return devDTO;
     }
 
 }
