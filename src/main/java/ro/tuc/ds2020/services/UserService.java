@@ -50,16 +50,16 @@ public class UserService {
         return new UserDTO(user);
     }
 
-    public UserDTO updateUser(Long userId, UserDTO userDTO){
+    public UserDetailsDTO updateUser(Long userId, UserDTO userDTO){
         Users user=userRepository.findById(userId).orElse(null);
         if(user == null){
             //throw new ResourceNotFoundExeption(String.format("user with id %d not found ", userId));
         } else {
             user.setName(userDTO.getName());
             user.setPassword(userDTO.getPassword());
-            user.setRole(userDTO.isRole());
+            //user.setRole(userDTO.isRole());
         }
-        return new UserDTO(userRepository.save(user));
+        return new UserDetailsDTO(userRepository.save(user));
     }
 
     public UserDetailsDTO getUser(Long userId){
