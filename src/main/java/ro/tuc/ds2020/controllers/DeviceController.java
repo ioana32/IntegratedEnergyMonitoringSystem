@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ro.tuc.ds2020.dtos.DeviceDTO;
 import ro.tuc.ds2020.dtos.DeviceDetailsDTO;
 import ro.tuc.ds2020.dtos.UserDetailsDTO;
+import ro.tuc.ds2020.entities.Device;
 import ro.tuc.ds2020.services.DeviceService;
 
 import java.util.List;
@@ -46,13 +47,14 @@ public class DeviceController {
        // return new ResponseEntity<>(deviceService.createDevice(deviceDTO),HttpStatus.CREATED);
     }
 
-    @PatchMapping(value = "/{deviceId}")
-    public ResponseEntity<DeviceDetailsDTO> updateDevice(@PathVariable("deviceId") Long deviceId, @RequestBody DeviceDTO deviceDTO){
-        return new ResponseEntity<>(deviceService.updateDevice(deviceId,deviceDTO),HttpStatus.OK);
+    @PatchMapping(value = "/{deviceId}/{userId}")
+    public ResponseEntity<DeviceDetailsDTO> updateDevice(@PathVariable("deviceId") Long deviceId, @PathVariable("userId") Long userId, @RequestBody DeviceDTO deviceDTO){
+        System.out.println(deviceDTO);
+        return new ResponseEntity<>(deviceService.updateDevice(deviceId,userId, deviceDTO),HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{deviceId}")
-    public ResponseEntity<DeviceDTO> deleteDevice(@PathVariable("deviceId") Long deviceId) throws NotFoundException {
+    public ResponseEntity<Device> deleteDevice(@PathVariable("deviceId") Long deviceId) throws NotFoundException {
         return new ResponseEntity<>(deviceService.deleteDevice(deviceId),HttpStatus.OK);
     }
     
