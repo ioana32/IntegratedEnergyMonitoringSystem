@@ -84,4 +84,11 @@ public class UserService {
         return clientsN;
     }
 
+    public UserDetailsDTO logIn(String userName){
+        //System.out.println(userName);
+        Users user=userRepository.findByName(userName);
+        // System.out.println(user);
+        return new UserDetailsDTO(user);
+    }
+
 }

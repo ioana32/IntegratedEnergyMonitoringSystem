@@ -81,14 +81,14 @@ public class Users {
         this.devices = devices;
     }
 
-    @Override
-    public String toString() {
-        return "Users{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
-                ", devices=" + devices +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Users{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", password='" + password + '\'' +
+//                ", role=" + role +
+//                ", devices=" + devices +
+//                '}';
+//    }
 }

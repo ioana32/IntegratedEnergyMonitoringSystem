@@ -14,6 +14,6 @@ import java.util.UUID;
 
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
-    Users findByName(String email);
+    Users findByName(String name);
     List<Users> findAllByRoleIsFalse();
 }
