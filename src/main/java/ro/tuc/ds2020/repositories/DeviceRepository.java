@@ -22,6 +22,11 @@ public interface DeviceRepository extends JpaRepository<Device, Long> {
                     "WHERE d.id = :deviceId")
     Integer deleteDeviceById(@Param("deviceId") Long deviceId);
 
-    List<Device> findAllByUser(Long userId);
+    @Query(value = "SELECT d " +
+            "FROM Device d " +
+            "WHERE d.user.id = :userId")
+    List<Device> findAllByUser(@Param("userId") Long userId);
 
+//    List<Device> findByUser(Long userId);
+//
 }
