@@ -60,6 +60,8 @@ public class DeviceService {
             device.setAddress(deviceDTO.getAddress());
             device.setMaxEnergy(deviceDTO.getMaxEnergy());
             device.setDescription(deviceDTO.getDescription());
+            System.out.println(deviceDTO.getUser());
+            device.setUser(userRepository.findById(deviceDTO.getUser().getId()).get());
         }
         return new DeviceDetailsDTO(deviceRepository.save(device));
     }

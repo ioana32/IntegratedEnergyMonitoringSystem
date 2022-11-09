@@ -47,6 +47,10 @@ public class DeviceDTO {
         return user;
     }
 
+    public Long getUserId(){
+        return user.getId();
+    }
+
     public void setUser(Users user) {
         this.user = user;
     }
