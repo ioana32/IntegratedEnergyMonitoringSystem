@@ -5,19 +5,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ro.tuc.ds2020.controllers.handlers.exceptions.model.ResourceNotFoundException;
-import ro.tuc.ds2020.dtos.PersonDetailsDTO;
 import ro.tuc.ds2020.dtos.UserDTO;
 import ro.tuc.ds2020.dtos.UserDetailsDTO;
-import ro.tuc.ds2020.dtos.builders.PersonBuilder;
-import ro.tuc.ds2020.entities.Device;
-import ro.tuc.ds2020.entities.Person;
 import ro.tuc.ds2020.entities.Users;
 import ro.tuc.ds2020.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {

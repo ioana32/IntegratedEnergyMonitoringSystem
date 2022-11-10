@@ -6,14 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ro.tuc.ds2020.dtos.PersonDetailsDTO;
 import ro.tuc.ds2020.dtos.UserDTO;
 import ro.tuc.ds2020.dtos.UserDetailsDTO;
 import ro.tuc.ds2020.services.UserService;
 
-import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @CrossOrigin

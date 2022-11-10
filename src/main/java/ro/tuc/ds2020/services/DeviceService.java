@@ -41,18 +41,19 @@ public class DeviceService {
         return new DeviceDetailsDTO(deviceRepository.save(device));
     }
 
-    public DeviceDTO deleteDevice(Long deviceId) throws NotFoundException {
+    public Device deleteDevice(Long deviceId) throws NotFoundException {
         Device device= deviceRepository.findById(deviceId).orElse(null);
-        System.out.println(device);
-        if (device == null) {
-            //throw new ResourceNotFoundExeption(String.format("Client with id %d not found ", clientId));
-        }
-        Integer i =deviceRepository.deleteDeviceById(device.getId());
+//        System.out.println(device);
+//        if (device == null) {
+//            //throw new ResourceNotFoundExeption(String.format("Client with id %d not found ", clientId));
+//        }
+//        Integer i =deviceRepository.deleteDeviceById(device.getId());
        // return device.getId();
-        return new DeviceDTO(device);
+        deviceRepository.delete(device);
+        return device;
     }
 
-    public DeviceDetailsDTO updateDevice(Long deviceId, DeviceDTO deviceDTO){
+    public DeviceDetailsDTO updateDevice(Long deviceId, Long userId,DeviceDTO deviceDTO){
         Device device=deviceRepository.findById(deviceId).orElse(null);
         if(device == null){
             //throw new ResourceNotFoundExeption(String.format("Client with id %d not found ", clientId));
@@ -60,8 +61,8 @@ public class DeviceService {
             device.setAddress(deviceDTO.getAddress());
             device.setMaxEnergy(deviceDTO.getMaxEnergy());
             device.setDescription(deviceDTO.getDescription());
-            System.out.println(deviceDTO.getUser());
-            device.setUser(userRepository.findById(deviceDTO.getUser().getId()).get());
+//            System.out.println(deviceDTO);
+            device.setUser(userRepository.findById(userId).get());
         }
         return new DeviceDetailsDTO(deviceRepository.save(device));
     }
